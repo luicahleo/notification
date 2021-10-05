@@ -5,8 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 
 class NotificationComponent extends Component
-{
-
+{   
+ 
     // para poder escuchar un componente
     protected $listeners = ['notification']; // una vez que escucha el evento, va a tratar de ejecutar un metodo con el mismo nombre
 
