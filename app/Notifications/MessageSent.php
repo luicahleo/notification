@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class MessageSent extends Notification
 {
@@ -34,8 +35,8 @@ class MessageSent extends Notification
      */
     public function via($notifiable)
     {
-        // correos electronicos, database
-        return ['mail', 'database'];
+        // correos electronicos, database, broadcast
+        return ['mail', 'database', 'broadcast'];
     }
 
     /**
@@ -69,5 +70,11 @@ class MessageSent extends Notification
             'url' => route('messages.show', $this->message->id),
             'message' => 'has recibido un mensaje de ' . User::find($this->message->from_user_id)->name,
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        // esto toma la configutacion que hemos hecho
+        return new BroadcastMessage([]);
     }
 }
