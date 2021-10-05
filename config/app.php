@@ -168,10 +168,15 @@ return [
 
         /*
          * Application Service Providers...
+         * 
+         * estoy descomentando esta linea         App\Providers\BroadcastServiceProvider::class,
+         * luego ejecuto e terminal esto $composer require pusher/pusher-php-server
+         * luego de configurar pusher en .env tengo que configurar laravel echo $npm install --save-dev laravel-echo pusher-js
+
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
