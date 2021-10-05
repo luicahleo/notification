@@ -24,8 +24,23 @@ class MessageController extends Controller
             'subject' => 'required|min:10',
             'body'  => 'required|min:10',
             'to_user_id' => 'required|exists:users,id',  //requerido, pero que debe existir en la tabla users en el campo id
-
         ]);
+
+        Message::create([
+            'subject' =>  $request->subject,
+            'body' => $request->body,
+            'from_user_id' => auth()->id(),
+            'to_user_id' => $request->to_user_id,
+        ]);
+
+        // genero dos variables de sesion para usar el componente <x-jet-banner
+        $request->session()->flash('flash.banner', 'Tu mensaje fue enviado');
+        $request->session()->flash('flash.bannerStyle', 'success');
+
+        // retorna a la anterior pagina
+        return redirect()->back();
+
+
     }
 
 
